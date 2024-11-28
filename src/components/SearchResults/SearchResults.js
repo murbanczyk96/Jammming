@@ -6,7 +6,7 @@ function SearchResults({searchResults}) {
     return (
         <div>
             <h2>Search Results</h2>
-            <Tracklist searchResults={searchResults} />
+            <Tracklist tracks={searchResults} />
         </div>
     );
 }

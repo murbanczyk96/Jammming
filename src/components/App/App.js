@@ -4,6 +4,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Tracklist from "../Tracklist/Tracklist";
 import {useEffect, useState} from "react";
+import Playlist from "../Playlist/Playlist";
 
 const testSearchResultsData = [
     {
@@ -25,8 +26,11 @@ const testSearchResultsData = [
         id: 3433433
     }
 ];
+
 function App() {
-    const [searchResults, setSearchResults] = useState(null);
+    const [searchResults, setSearchResults] = useState([]);
+    const [playlistTracks, setPlaylistTracks] = useState([]);
+    const [playlistName, setPlaylistName] = useState("Playlist");
 
 
     useEffect(() => {
@@ -37,8 +41,8 @@ function App() {
         <div className="App">
             <h1>Jammming!</h1>
             <SearchBar/>
-            {searchResults && <SearchResults searchResults={searchResults} />}
-            <Tracklist/>
+            <SearchResults searchResults={searchResults}/>
+            <Playlist playlistName={playlistName} playlistTracks={playlistTracks}/>
         </div>
     );
 }
