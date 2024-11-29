@@ -1,8 +1,6 @@
-import logo from '../../logo.svg';
-import './App.module.css';
+import styles from './App.module.css';
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
-import Tracklist from "../Tracklist/Tracklist";
 import {useEffect, useState} from "react";
 import Playlist from "../Playlist/Playlist";
 
@@ -32,17 +30,29 @@ function App() {
     const [playlistTracks, setPlaylistTracks] = useState([]);
     const [playlistName, setPlaylistName] = useState("Playlist");
 
+    const addTrack = (track) => {
+        const isInArray = playlistTracks.some(playlistTrack => playlistTrack.id === track.id);
+        if (!isInArray) {
+            setPlaylistTracks(prev => [...prev, track]);
+        }
+    };
+
+    const removeTrack = (track) => {
+        setPlaylistTracks(prev => prev.filter(playlistTrack => playlistTrack.id !== track.id));
+    };
 
     useEffect(() => {
         setSearchResults(testSearchResultsData);
     }, []);
 
     return (
-        <div className="App">
+        <div className={styles.App}>
             <h1>Jammming!</h1>
             <SearchBar/>
-            <SearchResults searchResults={searchResults}/>
-            <Playlist playlistName={playlistName} playlistTracks={playlistTracks}/>
+            <div className={styles.resContainer}>
+                <SearchResults searchResults={searchResults} addTrack={addTrack}/>
+                <Playlist playlistName={playlistName} playlistTracks={playlistTracks} removeTrack={removeTrack}/>
+            </div>
         </div>
     );
 }

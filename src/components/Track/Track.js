@@ -1,11 +1,23 @@
 import React from "react";
+import styles from "./Track.module.css";
 
+function Track(props) {
+    const buttonClickHandler = (event) => {
+        if (props.addTrack) {
+            props.addTrack(props.track);
+        } else if (props.removeTrack) {
+            props.removeTrack(props.track);
+        }
+    };
 
-function Track({track}) {
+    const button = <button className={styles.button} onClick={buttonClickHandler}>{props.addTrack ? '+' : '-'}</button>
     return (
-        <div>
-            <h3>{track.name}</h3>
-            <p>Artist: {track.artist} Album: {track.album}</p>
+        <div className={styles.track}>
+            <div>
+                <h3>{props.track.name}</h3>
+                <p>Artist: {props.track.artist} Album: {props.track.album}</p>
+            </div>
+            {button}
         </div>
     );
 }

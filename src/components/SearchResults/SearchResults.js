@@ -1,12 +1,13 @@
 import React from "react";
+import styles from "./SearchResults.module.css";
 import Tracklist from "../Tracklist/Tracklist";
 
 
-function SearchResults({searchResults}) {
+function SearchResults(props) {
     return (
-        <div>
+        <div className={styles.searchResults}>
             <h2>Search Results</h2>
-            <Tracklist tracks={searchResults} />
+            <Tracklist tracks={props.searchResults} addTrack={props.addTrack} />
         </div>
     );
 }

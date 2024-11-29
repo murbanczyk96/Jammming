@@ -1,0 +1,8 @@
+.searchResults {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 20px;
+    border: green dashed 10px;
+    background-color: lightgreen;
+}

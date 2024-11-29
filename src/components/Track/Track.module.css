@@ -1,0 +1,22 @@
+.track {
+    display: flex;
+    justify-content: space-between;
+    background-color: lawngreen;
+    border: yellowgreen dotted 5px;
+    text-align: left;
+    padding-left: 10px;
+    margin: 5px;
+}
+
+.button {
+    align-self: center;
+    margin-right:  20px;
+    border: green solid 2px;
+    width: 50px;
+    height: 50px;
+    background-color: aquamarine;
+}
+
+.button:hover {
+    background-color: mediumaquamarine;
+}
