@@ -9,26 +9,30 @@ const testSearchResultsData = [
         name: 'Marko',
         artist: 'Polo',
         album: 'Album',
-        id: 34342
+        id: 34342,
+        uri: '34234234345dfgfdgs234'
     },
     {
         name: 'Berlin',
         artist: 'BerlinArtist',
         album: 'BerlinAlbum',
-        id: 343343
+        id: 343343,
+        uri: '34234234234r434'
     },
     {
         name: 'Ammmde',
         artist: 'ammdarits',
         album: 'ammalbum',
-        id: 3433433
+        id: 3433433,
+        uri: '342342fdasgs34334'
     }
 ];
 
 function App() {
     const [searchResults, setSearchResults] = useState([]);
     const [playlistTracks, setPlaylistTracks] = useState([]);
-    const [playlistName, setPlaylistName] = useState("Playlist");
+    const [playlistName, setPlaylistName] = useState("Playlist Name");
+
 
     const addTrack = (track) => {
         const isInArray = playlistTracks.some(playlistTrack => playlistTrack.id === track.id);
@@ -40,6 +44,16 @@ function App() {
     const removeTrack = (track) => {
         setPlaylistTracks(prev => prev.filter(playlistTrack => playlistTrack.id !== track.id));
     };
+
+    const savePlaylist = () => {
+        const trackUris = playlistTracks.map(track => track.uri);
+
+        console.log("Saving Uris", trackUris);
+
+        setPlaylistName('Playlist Name');
+        setPlaylistTracks([]);
+    };
+
 
     const handlePlaylistInputChange = (e) => {
         setPlaylistName(e.target.value);
@@ -56,7 +70,7 @@ function App() {
             <div className={styles.resContainer}>
                 <SearchResults searchResults={searchResults} addTrack={addTrack}/>
                 <Playlist playlistName={playlistName} playlistTracks={playlistTracks} removeTrack={removeTrack}
-                          handlePlaylistInputChange={handlePlaylistInputChange}/>
+                          handlePlaylistInputChange={handlePlaylistInputChange} savePlaylist={savePlaylist}/>
             </div>
         </div>
     );
