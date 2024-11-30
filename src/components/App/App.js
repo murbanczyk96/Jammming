@@ -41,6 +41,10 @@ function App() {
         setPlaylistTracks(prev => prev.filter(playlistTrack => playlistTrack.id !== track.id));
     };
 
+    const handlePlaylistInputChange = (e) => {
+        setPlaylistName(e.target.value);
+    };
+
     useEffect(() => {
         setSearchResults(testSearchResultsData);
     }, []);
@@ -51,7 +55,8 @@ function App() {
             <SearchBar/>
             <div className={styles.resContainer}>
                 <SearchResults searchResults={searchResults} addTrack={addTrack}/>
-                <Playlist playlistName={playlistName} playlistTracks={playlistTracks} removeTrack={removeTrack}/>
+                <Playlist playlistName={playlistName} playlistTracks={playlistTracks} removeTrack={removeTrack}
+                          handlePlaylistInputChange={handlePlaylistInputChange}/>
             </div>
         </div>
     );
