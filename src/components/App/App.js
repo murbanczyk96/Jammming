@@ -1,7 +1,8 @@
+import React, {useEffect, useState} from "react";
+import Spotify from "../../api/Spotify";
 import styles from './App.module.css';
 import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
-import {useEffect, useState} from "react";
 import Playlist from "../Playlist/Playlist";
 
 const testSearchResultsData = [
@@ -54,6 +55,14 @@ function App() {
         setPlaylistTracks([]);
     };
 
+    const handleSearch = async (term) => {
+        try {
+            const results = await Spotify.searchSpotify(term);
+            setSearchResults(results);
+        } catch (err){
+            console.log("Error searching Spotify: ", err);
+        }
+    };
 
     const handlePlaylistInputChange = (e) => {
         setPlaylistName(e.target.value);
@@ -61,12 +70,13 @@ function App() {
 
     useEffect(() => {
         setSearchResults(testSearchResultsData);
+        Spotify.getAccessToken();
     }, []);
 
     return (
         <div className={styles.App}>
-            <h1>Jammming!</h1>
-            <SearchBar/>
+            <h1 style={{color: 'yellowgreen'}}>Jammming!</h1>
+            <SearchBar onSearch={handleSearch}/>
             <div className={styles.resContainer}>
                 <SearchResults searchResults={searchResults} addTrack={addTrack}/>
                 <Playlist playlistName={playlistName} playlistTracks={playlistTracks} removeTrack={removeTrack}
