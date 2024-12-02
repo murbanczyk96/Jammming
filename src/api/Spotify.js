@@ -1,5 +1,5 @@
-const clientId = 'b983a1fc69ca4d0fa692e64e96bd092f';
-const redirectUri = 'http://192.168.3.15:3000';
+const clientId = process.env.CLIENT_ID;
+const redirectUri = process.env.REDIRECT_URI;
 let accessToken;
 
 const Spotify = {
