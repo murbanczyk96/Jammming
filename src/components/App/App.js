@@ -5,6 +5,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
 
+
 const testSearchResultsData = [
     {
         name: 'Marko',
@@ -50,6 +51,7 @@ function App() {
         const trackUris = playlistTracks.map(track => track.uri);
 
         console.log("Saving Uris", trackUris);
+        Spotify.savePlaylist(playlistName, trackUris);
 
         setPlaylistName('Playlist Name');
         setPlaylistTracks([]);
@@ -69,7 +71,6 @@ function App() {
     };
 
     useEffect(() => {
-        setSearchResults(testSearchResultsData);
         Spotify.getAccessToken();
     }, []);
 
