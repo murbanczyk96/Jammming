@@ -20,6 +20,6 @@ function Track(props) {
             {button}
         </div>
     );
-}
+};
 
 export default Track;
