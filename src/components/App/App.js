@@ -57,11 +57,17 @@ function App() {
         setPlaylistTracks([]);
     };
 
+    const filterTracks = (searchResults, playlist) => {
+        return searchResults.filter(
+            track => !playlist.some(playlistTrack => playlistTrack.id === track.id)
+        );
+    };
+
     const handleSearch = async (term) => {
         try {
             const results = await Spotify.searchSpotify(term);
             setSearchResults(results);
-        } catch (err){
+        } catch (err) {
             console.log("Error searching Spotify: ", err);
         }
     };
@@ -74,12 +80,14 @@ function App() {
         Spotify.getAccessToken();
     }, []);
 
+    const filteredPlaylistTracks = filterTracks(searchResults, playlistTracks);
+
     return (
         <div className={styles.App}>
             <h1 style={{color: 'yellowgreen'}}>Jammming!</h1>
             <SearchBar onSearch={handleSearch}/>
             <div className={styles.resContainer}>
-                <SearchResults searchResults={searchResults} addTrack={addTrack}/>
+                <SearchResults searchResults={filteredPlaylistTracks} addTrack={addTrack}/>
                 <Playlist playlistName={playlistName} playlistTracks={playlistTracks} removeTrack={removeTrack}
                           handlePlaylistInputChange={handlePlaylistInputChange} savePlaylist={savePlaylist}/>
             </div>
