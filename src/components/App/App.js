@@ -5,31 +5,6 @@ import SearchBar from "../SearchBar/SearchBar";
 import SearchResults from "../SearchResults/SearchResults";
 import Playlist from "../Playlist/Playlist";
 
-
-const testSearchResultsData = [
-    {
-        name: 'Marko',
-        artist: 'Polo',
-        album: 'Album',
-        id: 34342,
-        uri: '34234234345dfgfdgs234'
-    },
-    {
-        name: 'Berlin',
-        artist: 'BerlinArtist',
-        album: 'BerlinAlbum',
-        id: 343343,
-        uri: '34234234234r434'
-    },
-    {
-        name: 'Ammmde',
-        artist: 'ammdarits',
-        album: 'ammalbum',
-        id: 3433433,
-        uri: '342342fdasgs34334'
-    }
-];
-
 function App() {
     const [searchResults, setSearchResults] = useState([]);
     const [playlistTracks, setPlaylistTracks] = useState([]);
